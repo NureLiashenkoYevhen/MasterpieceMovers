@@ -1,9 +1,11 @@
 ﻿using Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
     public class Transfer
     {
+        [Key]
         public int Id { get; set; }
 
         public DateTime StartingDate { get; set; }

@@ -1,7 +1,10 @@
-﻿namespace Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Entities
 {
     public class Location
     {
+        [Key]
         public int Id { get; set; }
 
         public float Latitude { get; set; }
