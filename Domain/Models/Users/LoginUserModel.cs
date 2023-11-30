@@ -1,9 +1,7 @@
-﻿namespace Domain.DTO.Users
+﻿namespace Core.DTO.Users
 {
-    public class SignUpUserDTO
+    public class LoginUserModel
     {
-        public string Name { get; set; }
-
         public string Email { get; set; }
 
         public string Password { get; set; }

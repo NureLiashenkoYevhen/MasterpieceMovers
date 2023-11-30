@@ -1,8 +1,8 @@
-﻿using Domain.Enums;
+﻿using Core.Enums;
 
-namespace Domain.DTO.Users
+namespace Core.DTO.Users
 {
-    public class CreateUserDTO
+    public class CreateUserModel
     {
         public string UserName { get; set; }
 

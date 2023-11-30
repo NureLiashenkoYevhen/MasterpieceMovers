@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entities
+namespace Core.Entities
 {
-    public class Analytic
+    public class Analysis
     {
         [Key]
         public int Id { get; set; }

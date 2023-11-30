@@ -1,7 +1,7 @@
-﻿using Domain.Enums;
+﻿using Core.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entities
+namespace Core.Entities
 {
     public class Transfer
     {
@@ -26,6 +26,6 @@ namespace Domain.Entities
 
         public User User { get; set; }
 
-        public List<Analytic> Analytics { get; set; }
+        public List<Analysis> Analysises { get; set; }
     }
 }

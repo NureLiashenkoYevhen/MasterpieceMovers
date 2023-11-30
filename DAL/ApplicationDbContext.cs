@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+﻿using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL
@@ -14,7 +14,7 @@ namespace DAL
         public DbSet<Transfer> Transfers { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<TransferCondition> TransferConditions { get; set; }
-        public DbSet<Analytic> Analytics { get; set; }
+        public DbSet<Analysis> Analysises { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

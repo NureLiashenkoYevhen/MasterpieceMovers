@@ -1,6 +1,6 @@
-﻿namespace Domain.DTO.Transfer
+﻿namespace Core.DTO.Transfer
 {
-    public class TransferLocationDTO
+    public class TransferLocationModel
     {
         public float Latitude { get; set; }
 
