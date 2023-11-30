@@ -10,7 +10,7 @@ namespace Domain.Entities
 
         public DateTime StartingDate { get; set; }
 
-        public int StartLocationId { get; set; }
+        public int StartingLocationId { get; set; }
 
         public Location StartingLocation { get; set; }
 

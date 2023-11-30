@@ -15,6 +15,8 @@ namespace Domain.Entities
 
         public float MaxHumidity { get; set; }
 
+        public int TransferId { get; set; }
+
         public Transfer Transfer { get; set; }
     }
 }
