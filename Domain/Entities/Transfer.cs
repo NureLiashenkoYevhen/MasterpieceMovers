@@ -20,7 +20,7 @@ namespace Domain.Entities
 
         public Location EndingLocation { get; set; }
 
-        public ShipmentCondition ShipmentCondition { get; set; }
+        public TransferCondition TransferCondition { get; set; }
 
         public TransferStatus Status { get; set; }
 

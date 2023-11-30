@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class ShipmentCondition
+    public class TransferCondition
     {
         [Key]
         public int Id { get; set; }
