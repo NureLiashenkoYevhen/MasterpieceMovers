@@ -1,4 +1,6 @@
 ﻿using Core.Entities;
+using Core.Models;
+using Core.Models.Errors;
 using Core.Models.Notification;
 using DAL;
 using FluentResults;
@@ -15,13 +17,13 @@ namespace BLL.Notifications
             _applicationDbContext = applicationDbContext;
         }
 
-        public async Task<NotificationModel> CreateNotificationAsync(int userId, NotificationSuccessModel notificationModel)
+        public async Task<IModel> CreateNotificationAsync(int userId, NotificationModel notificationModel)
         {
             var dbUser = await _applicationDbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
             if (dbUser is null)
             {
-                return new NotificationErrorModel
+                return new ErrorModel
                 {
                     Message = $"User with id: {userId} was not found"
                 };
@@ -37,7 +39,7 @@ namespace BLL.Notifications
             _applicationDbContext.Notifications.Add(notification);
             await _applicationDbContext.SaveChangesAsync();
 
-            return new NotificationSuccessModel
+            return new NotificationModel
             {
                 Message = notification.Message,
                 IsRead = notification.IsRead
@@ -59,43 +61,43 @@ namespace BLL.Notifications
             return Result.Ok();
         }
 
-        public async Task<List<NotificationSuccessModel>> GetAllNotificationsAsync()
+        public async Task<List<NotificationModel>> GetAllNotificationsAsync()
         {
             var notifications = await _applicationDbContext.Notifications.ToListAsync();
 
-            return notifications.Select(n => new NotificationSuccessModel
+            return notifications.Select(n => new NotificationModel
             {
                 Message = n.Message,
                 IsRead = n.IsRead
             }).ToList();
         }
 
-        public async Task<NotificationModel> GetNotificationByIdAsync(int id)
+        public async Task<IModel> GetNotificationByIdAsync(int id)
         {
             var notification = await _applicationDbContext.Notifications.FirstOrDefaultAsync(n => n.Id == id);
 
             if (notification is null)
             {
-                return new NotificationErrorModel
+                return new ErrorModel
                 {
                     Message = $"Notification with id: {id} not found."
                 };
             }
 
-            return new NotificationSuccessModel
+            return new NotificationModel
             {
                 Message = notification.Message,
                 IsRead = notification.IsRead
             };
         }
 
-        public async Task<NotificationModel> UpdateNotificationAsync(int id, NotificationSuccessModel notificationModel)
+        public async Task<IModel> UpdateNotificationAsync(int id, NotificationModel notificationModel)
         {
             var dbNotification = await _applicationDbContext.Notifications.FirstOrDefaultAsync(n => n.Id == id);
 
             if (dbNotification is null)
             {
-                return new NotificationErrorModel
+                return new ErrorModel
                 {
                     Message = $"Notification with id {id} not found."
                 };
@@ -106,7 +108,7 @@ namespace BLL.Notifications
 
             await _applicationDbContext.SaveChangesAsync();
 
-            return new NotificationSuccessModel
+            return new NotificationModel
             {
                 Message = dbNotification.Message,
                 IsRead = dbNotification.IsRead

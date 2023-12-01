@@ -22,7 +22,7 @@ namespace Core.Entities
 
         public TransferCondition TransferCondition { get; set; }
 
-        public TransferStatus Status { get; set; }
+        public TransferStatus TransferStatus { get; set; }
 
         public User User { get; set; }
 

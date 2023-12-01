@@ -1,7 +1,9 @@
 ﻿namespace Core.Models.Notification
 {
-    public abstract class NotificationModel
+    public class NotificationModel : IModel
     {
         public string Message { get; set; }
+
+        public bool IsRead { get; set; }
     }
 }
