@@ -2,8 +2,8 @@
 {
     public interface IPasswordService
     {
-        public (string hash, string salt) HashPassword(string passwordToHash);
+        (string hash, string salt) HashPassword(string passwordToHash);
 
-        public bool IsValid(string inputPassword, string passwordInDb, string salt);
+        bool IsValid(string inputPassword, string passwordInDb, string salt);
     }
 }

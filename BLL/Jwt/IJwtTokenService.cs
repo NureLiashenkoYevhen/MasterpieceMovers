@@ -7,6 +7,6 @@ namespace BLL.Jwt
     {
         public IConfiguration Configuration { get; set; }
 
-        public string GenerateToken(int userId, RoleEnum role);
+        string GenerateToken(int userId, RoleEnum role);
     }
 }

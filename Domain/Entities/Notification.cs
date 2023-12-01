@@ -9,7 +9,7 @@ namespace Core.Entities
 
         public string Message { get; set; }
 
-        public bool isRead { get; set; }
+        public bool IsRead { get; set; }
 
         public User User { get; set; }
     }
