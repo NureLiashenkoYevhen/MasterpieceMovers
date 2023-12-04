@@ -1,6 +1,8 @@
-﻿namespace Core.DTO.Transfer
+﻿using Core.Models;
+
+namespace Core.DTO.Transfer
 {
-    public class TransferLocationModel
+    public class TransferLocationModel : IModel
     {
         public float Latitude { get; set; }
 

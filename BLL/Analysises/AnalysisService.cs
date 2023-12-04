@@ -27,7 +27,7 @@ namespace BLL.Analysises
 
             if (analysis is null) 
             {
-                return Result.Fail($"Analysis with id {id} not found.");
+                return Result.Fail($"Analysis with id: {id} was not found.");
             }
 
             _applicationDbContext.Remove(analysis);
@@ -56,7 +56,7 @@ namespace BLL.Analysises
             {
                 return new ErrorModel
                 {
-                    Message = $"No analysises with id: {id} was found"
+                    Message = $"No analysises with id: {id} was not found."
                 };
             }
 
@@ -68,9 +68,25 @@ namespace BLL.Analysises
             };
         }
 
-        public Task<IModel> UpdateAnalysisAsync(int id, AnalysisModel analysisModel)
+        public async Task<IModel> UpdateAnalysisAsync(int id, AnalysisModel analysisModel)
         {
-            throw new NotImplementedException();
+            var dbAnalysis = await _applicationDbContext.Analysises.FirstOrDefaultAsync(a => a.Id == id);
+
+            if (dbAnalysis is null)
+            {
+                return new ErrorModel
+                {
+                    Message = $"Analysis with such id: {id} was not found."
+                };
+            }
+
+            dbAnalysis.Metric = analysisModel.Metrics;
+            dbAnalysis.Value = analysisModel.Value;
+            dbAnalysis.Timestamp = analysisModel.TimeSpan;
+
+            await _applicationDbContext.SaveChangesAsync();
+
+            return analysisModel;
         }
     }
 }
