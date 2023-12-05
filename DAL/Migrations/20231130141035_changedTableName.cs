@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Core.Migrations
 {
-    public partial class Initial : Migration
+    public partial class changedTableName : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -98,7 +98,7 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Analytics",
+                name: "Analysises",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -110,9 +110,9 @@ namespace Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Analytics", x => x.Id);
+                    table.PrimaryKey("PK_Analysises", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Analytics_Transfers_TransferId",
+                        name: "FK_Analysises_Transfers_TransferId",
                         column: x => x.TransferId,
                         principalTable: "Transfers",
                         principalColumn: "Id",
@@ -143,8 +143,8 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Analytics_TransferId",
-                table: "Analytics",
+                name: "IX_Analysises_TransferId",
+                table: "Analysises",
                 column: "TransferId");
 
             migrationBuilder.CreateIndex(
@@ -177,7 +177,7 @@ namespace Core.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Analytics");
+                name: "Analysises");
 
             migrationBuilder.DropTable(
                 name: "Notifications");
