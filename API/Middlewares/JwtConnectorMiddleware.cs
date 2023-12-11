@@ -33,7 +33,7 @@ public class JwtConnectorMiddleware
     private void AddUserToContext(HttpContext context, IJwtTokenService jwtService, string token)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(jwtService.Configuration["Jwt:Token"]);
+        var key = Encoding.ASCII.GetBytes(jwtService.Configuration["Jwt:SecretKey"]);
 
         tokenHandler.ValidateToken(token, new TokenValidationParameters
         {
