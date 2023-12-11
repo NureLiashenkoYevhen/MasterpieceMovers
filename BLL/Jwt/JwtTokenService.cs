@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BLL.Jwt
 {
-    internal class JwtTokenService
+    public class JwtTokenService : IJwtTokenService
     {
         public IConfiguration Configuration { get; set; }
 
