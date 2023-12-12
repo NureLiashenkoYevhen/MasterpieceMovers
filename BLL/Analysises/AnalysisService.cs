@@ -1,4 +1,5 @@
-﻿using Core.Models;
+﻿using Core.Entities;
+using Core.Models;
 using Core.Models.Analysis;
 using Core.Models.Errors;
 using DAL;
@@ -16,18 +17,38 @@ namespace BLL.Analysises
             _applicationDbContext = applicationDbContext;
         }
 
-        public Task<IModel> CreateAnalysisAsync(int transferId, AnalysisModel analysisModel)
+        public async Task<IModel> CreateAnalysisAsync(int transferId, AnalysisModel analyticModel)
         {
-            throw new NotImplementedException();
+            var transfer = await _applicationDbContext.Transfers.FirstOrDefaultAsync(s => s.Id == transferId);
+
+            if (transfer is null)
+            {
+                return new ErrorModel
+                {
+                    Message = $"Transfer with id: {transferId} was not found."
+                };
+            }
+
+            var analysis = new Analysis()
+            {
+                Metric = analyticModel.Metrics,
+                Value = analyticModel.Value,
+                Timestamp = analyticModel.TimeSpan,
+                Transfer = transfer,
+            };
+            _applicationDbContext.Analysises.Add(analysis);
+            await _applicationDbContext.SaveChangesAsync();
+
+            return analyticModel;
         }
 
-        public async Task<Result> DeleteAnalysisAsync(int id)
+        public async Task<Result> DeleteAnalysisAsync(int analysisId)
         {
-            var analysis = _applicationDbContext.Analysises.FirstOrDefaultAsync(a => a.Id == id);
+            var analysis = _applicationDbContext.Analysises.FirstOrDefaultAsync(a => a.Id == analysisId);
 
             if (analysis is null) 
             {
-                return Result.Fail($"Analysis with id: {id} was not found.");
+                return Result.Fail($"Analysis with id: {analysisId} was not found.");
             }
 
             _applicationDbContext.Remove(analysis);
@@ -48,15 +69,15 @@ namespace BLL.Analysises
             }).ToList();
         }
 
-        public async Task<IModel> GetAnalysisByIdAsync(int id)
+        public async Task<IModel> GetAnalysisByIdAsync(int analysisId)
         {
-            var analysis = await _applicationDbContext.Analysises.FirstOrDefaultAsync(a => a.Id == id);
+            var analysis = await _applicationDbContext.Analysises.FirstOrDefaultAsync(a => a.Id == analysisId);
 
             if (analysis is null)
             {
                 return new ErrorModel
                 {
-                    Message = $"No analysises with id: {id} was not found."
+                    Message = $"No analysises with id: {analysisId} was not found."
                 };
             }
 
@@ -68,15 +89,15 @@ namespace BLL.Analysises
             };
         }
 
-        public async Task<IModel> UpdateAnalysisAsync(int id, AnalysisModel analysisModel)
+        public async Task<IModel> UpdateAnalysisAsync(int analysisId, AnalysisModel analysisModel)
         {
-            var dbAnalysis = await _applicationDbContext.Analysises.FirstOrDefaultAsync(a => a.Id == id);
+            var dbAnalysis = await _applicationDbContext.Analysises.FirstOrDefaultAsync(a => a.Id == analysisId);
 
             if (dbAnalysis is null)
             {
                 return new ErrorModel
                 {
-                    Message = $"Analysis with such id: {id} was not found."
+                    Message = $"Analysis with such id: {analysisId} was not found."
                 };
             }
 

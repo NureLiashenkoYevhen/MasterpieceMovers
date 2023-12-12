@@ -6,14 +6,14 @@ namespace BLL.Analysises
 {
     public interface IAnalysisService
     {
-        Task<IModel> GetAnalysisByIdAsync(int analyticId);
+        Task<IModel> GetAnalysisByIdAsync(int analysisId);
 
         Task<List<AnalysisModel>> GetAllAnalysisesAsync();
 
-        Task<IModel> CreateAnalysisAsync(int shipmentId, AnalysisModel analyticDto);
+        Task<IModel> CreateAnalysisAsync(int transferId, AnalysisModel analyticModel);
 
-        Task<IModel> UpdateAnalysisAsync(int analyticId, AnalysisModel analyticDto);
+        Task<IModel> UpdateAnalysisAsync(int analysisId, AnalysisModel analyticDto);
 
-        Task<Result> DeleteAnalysisAsync(int analyticId);
+        Task<Result> DeleteAnalysisAsync(int analysisId);
     }
 }

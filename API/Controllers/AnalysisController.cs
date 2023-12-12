@@ -18,10 +18,10 @@ public class AnalysisController : Controller
         _analysisService = analysisService;
     }
     
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetAnalysisById(int id)
+    [HttpGet("{analysisId}")]
+    public async Task<IActionResult> GetAnalysisById(int analysisId)
     {
-        var result = await _analysisService.GetAnalysisByIdAsync(id);
+        var result = await _analysisService.GetAnalysisByIdAsync(analysisId);
 
         if (result is ErrorModel)
         {
@@ -41,10 +41,10 @@ public class AnalysisController : Controller
         return Ok(result);
     }
 
-    [HttpPost("{id}")]
-    public async Task<IActionResult> CreateAnalysis(int id, [FromBody] AnalysisModel analysisModel)
+    [HttpPost("{transferId}")]
+    public async Task<IActionResult> CreateAnalysis(int transferId, [FromBody] AnalysisModel analysisModel)
     {
-        var result = await _analysisService.CreateAnalysisAsync(id, analysisModel);
+        var result = await _analysisService.CreateAnalysisAsync(transferId, analysisModel);
 
         if (result is ErrorModel)
         {
@@ -56,10 +56,10 @@ public class AnalysisController : Controller
         return Ok(result);
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAnalysis(int id, [FromBody] AnalysisModel analysisModel)
+    [HttpPut("{analysisId}")]
+    public async Task<IActionResult> UpdateAnalysis(int analysisId, [FromBody] AnalysisModel analysisModel)
     {
-        var result = await _analysisService.UpdateAnalysisAsync(id, analysisModel);
+        var result = await _analysisService.UpdateAnalysisAsync(analysisId, analysisModel);
 
         if (result is ErrorModel)
         {
@@ -71,10 +71,10 @@ public class AnalysisController : Controller
         return Ok(result);
     }
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteAnalysis(int id)
+    [HttpDelete("{analysisId}")]
+    public async Task<IActionResult> DeleteAnalysis(int analysisId)
     {
-        var result = await _analysisService.DeleteAnalysisAsync(id);
+        var result = await _analysisService.DeleteAnalysisAsync(analysisId);
 
         if (result.IsSuccess)
         {

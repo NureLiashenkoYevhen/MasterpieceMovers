@@ -3,11 +3,13 @@ using BLL.IoT;
 using BLL.Transfers;
 using Core.Models.Errors;
 using Core.Models.Transfer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("Api/[controller]")]
 public class TransferController : Controller
 {
