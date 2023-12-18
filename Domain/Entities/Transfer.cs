@@ -1,7 +1,7 @@
-﻿using Domain.Enums;
+﻿using Core.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entities
+namespace Core.Entities
 {
     public class Transfer
     {
@@ -10,7 +10,7 @@ namespace Domain.Entities
 
         public DateTime StartingDate { get; set; }
 
-        public int StartLocationId { get; set; }
+        public int StartingLocationId { get; set; }
 
         public Location StartingLocation { get; set; }
 
@@ -22,10 +22,10 @@ namespace Domain.Entities
 
         public TransferCondition TransferCondition { get; set; }
 
-        public TransferStatus Status { get; set; }
+        public TransferStatus TransferStatus { get; set; }
 
         public User User { get; set; }
 
-        public List<Analytic> Analytics { get; set; }
+        public List<Analysis> Analysises { get; set; }
     }
 }

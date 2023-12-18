@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entities
+namespace Core.Entities
 {
     public class TransferCondition
     {
@@ -14,6 +14,8 @@ namespace Domain.Entities
         public float MinHumidity { get; set; }
 
         public float MaxHumidity { get; set; }
+
+        public int TransferId { get; set; }
 
         public Transfer Transfer { get; set; }
     }

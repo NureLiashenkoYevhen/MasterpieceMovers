@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entities
+namespace Core.Entities
 {
     public class Notification
     {
@@ -9,7 +9,7 @@ namespace Domain.Entities
 
         public string Message { get; set; }
 
-        public bool isRead { get; set; }
+        public bool IsRead { get; set; }
 
         public User User { get; set; }
     }
