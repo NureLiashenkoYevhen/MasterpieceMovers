@@ -39,7 +39,7 @@ namespace BLL.IoT
 
             if (!response.IsSuccessStatusCode)
             {
-                new ErrorModel
+                return new ErrorModel
                 {
                     Message = $"Failed to retrieve location from API. Status code: {response.StatusCode}"
                 };
@@ -59,11 +59,11 @@ namespace BLL.IoT
             {
                 return new ErrorModel
                 {
-                    Message = $"TRansfer with id: {id} was not found."
+                    Message = $"Transfer with id: {id} was not found."
                 };
             }
 
-            var response = await _httpClient.GetAsync($"{_apiUrl}/getCurrentShipmentLocation?id={id}");
+            var response = await _httpClient.GetAsync($"{_apiUrl}/getCurrentTransferLocation?id={id}");
 
             if (!response.IsSuccessStatusCode)
             {
@@ -74,9 +74,9 @@ namespace BLL.IoT
             }
 
             var content = await response.Content.ReadAsStringAsync();
-            var conditionDto = JsonConvert.DeserializeObject<TransferLocationModel>(content);
+            var conditionModel = JsonConvert.DeserializeObject<TransferLocationModel>(content);
 
-            return conditionDto;
+            return conditionModel;
         }
     }
 }

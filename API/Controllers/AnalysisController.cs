@@ -2,10 +2,12 @@ using API.Attributes;
 using BLL.Analysises;
 using Core.Models.Analysis;
 using Core.Models.Errors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
+[Authorize]
 [AdminAuth]
 [ApiController]
 [Route("Api/[controller]")]

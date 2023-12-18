@@ -1,9 +1,11 @@
 using API.Attributes;
 using BLL.Statistics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
+[Authorize]
 [AdminAuth]
 [ApiController]
 [Route("Api/[controller]")]
@@ -32,7 +34,7 @@ public class StatisticsController : Controller
         return Ok(result);
     }
     
-    [HttpGet("ShipmentCountLastWeek")]
+    [HttpGet("TransferCountLastWeek")]
     public async Task<IActionResult> GetShipmentCountLastWeek()
     {
         var result = await _statisticsService.GetTransfersLastWeekAsync();

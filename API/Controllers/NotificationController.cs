@@ -2,10 +2,12 @@ using System.Security.Claims;
 using BLL.Notifications;
 using Core.Models.Errors;
 using Core.Models.Notification;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("Api/[controller]")]
 public class NotificationController : Controller

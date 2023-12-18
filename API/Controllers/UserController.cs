@@ -3,6 +3,7 @@ using BLL.Jwt;
 using BLL.Users;
 using Core.DTO.Users;
 using Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;

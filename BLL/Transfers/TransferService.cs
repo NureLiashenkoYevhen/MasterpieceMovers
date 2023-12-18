@@ -70,13 +70,21 @@ namespace BLL.Transfers
         {
             var transfers = await _applicationDbContext.Transfers.ToListAsync();
 
-            return transfers.Select(t => new TransferPassModel
+            var returnList = new List<TransferPassModel>();
+
+            foreach (var t in transfers)
             {
-                Id = t.Id,
-                StartingLocation = t.StartingLocation,
-                EndingLocation = t.EndingLocation,
-                Condition = t.TransferCondition
-            }).ToList();
+                returnList.Add(new TransferPassModel
+                {
+                    Id = t.Id,
+                    StartingLocation = PassLocationModel(await _applicationDbContext.Locations.FindAsync(t.StartingLocationId)),
+                    EndingLocation = PassLocationModel(await _applicationDbContext.Locations.FindAsync(t.EndingLocationId)),
+                    Condition = PassConditionModel(await _applicationDbContext.TransferConditions
+                        .FirstOrDefaultAsync(x => x.TransferId == t.Id)),
+                });
+            }
+
+            return returnList;
         }
 
         public async Task<List<Transfer>> GetTransfersByStatusAsync(TransferStatus status)
@@ -117,6 +125,10 @@ namespace BLL.Transfers
                 };
             }
 
+            dbTransfer.StartingLocation = await _applicationDbContext.Locations.FirstOrDefaultAsync(l => l.Id == dbTransfer.StartingLocationId);
+            dbTransfer.EndingLocation = await _applicationDbContext.Locations.FirstOrDefaultAsync(l => l.Id == dbTransfer.EndingLocationId);
+            dbTransfer.TransferCondition = await _applicationDbContext.TransferConditions.FirstOrDefaultAsync(c => c.TransferId == dbTransfer.Id);
+
             dbTransfer.StartingDate = transfer.StartingDate;
             dbTransfer.StartingLocation.Latitude = transfer.StartingLocationLatitude;
             dbTransfer.StartingLocation.Longitude = transfer.StartingLocationLongitude;
@@ -147,6 +159,33 @@ namespace BLL.Transfers
             await _applicationDbContext.SaveChangesAsync();
 
             return Result.Ok();
+        }
+
+        private Location PassLocationModel(Location location)
+        {
+            var toReturn = new Location
+            {
+                Id = location.Id,
+                Latitude = location.Latitude,
+                Longitude = location.Longitude
+            };
+
+            return toReturn;
+        }
+
+        private TransferCondition PassConditionModel(TransferCondition condition)
+        {
+            var toReturn = new TransferCondition()
+            {
+                Id = condition.Id,
+                MinHumidity = condition.MinHumidity,
+                MaxHumidity = condition.MaxHumidity,
+                MaxTemperature = condition.MaxTemperature,
+                MinTemperature = condition.MinTemperature,
+                TransferId = condition.TransferId
+            };
+
+            return toReturn;
         }
     }
 }
