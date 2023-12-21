@@ -1,32 +1,31 @@
-using IoT.Data;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Hosting;
-using System;
-
+// Створення об'єкта "builder" для налаштування веб-застосунку.
 var builder = WebApplication.CreateBuilder(args);
 
-// Запуск додатка
+// Додавання служб контролерів до сервісного контейнера.
+builder.Services.AddControllers();
+
+// Додавання служб для генерації API-документації та розгортання точок доступу.
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// Побудова об'єкта "app" на основі налаштувань, визначених у "builder".
 var app = builder.Build();
 
-// Ендпоінт для отримання місцезнаходження вантажу
-app.MapGet("/getCurrentTransferLocation?id={transferId}", (int transferId) =>
+// Якщо застосунок працює в режимі розробки, то включаємо Swagger та його інтерфейс користувача.
+if (app.Environment.IsDevelopment())
 {
-  // Отримання фейкових даних про місцезнаходження вантажу
-  var location = MockData.GetRandomTransferLocation();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-  // Перетворення в JSON та відправлення відповіді
-  return Results.Json(location);
-});
+// Використання перенаправлення HTTPS для підвищення безпеки з'єднань.
+app.UseHttpsRedirection();
 
-// Ендпоінт для отримання стану вантажу
-app.MapGet("/getCurrentTransferCondition?id={transferId}", (int transferId) =>
-{
-  // Отримання фейкових даних про стан вантажу
-  var condition = MockData.GetRandomTransferCondition();
+// Використання авторизації для захисту ресурсів.
+app.UseAuthorization();
 
-  // Перетворення в JSON та відправлення відповіді
-  return Results.Json(condition);
-});
+// Встановлення маршрутів для контролерів.
+app.MapControllers();
 
+// Запуск застосунку.
 app.Run();

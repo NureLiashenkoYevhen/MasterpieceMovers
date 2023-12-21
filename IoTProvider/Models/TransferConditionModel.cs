@@ -1,4 +1,4 @@
-namespace IoT.Models;
+namespace IoTProvider.Models;
 
 public class TransferConditionModel
 {

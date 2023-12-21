@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{BA829079-B147-4D7C-AD7A-017BA7E1B4EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTProvider", "IoTProvider\IoTProvider.csproj", "{A0DF8162-7DAE-4333-9F24-F63BB84109D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTProvider", "IoTProvider\IoTProvider.csproj", "{CF997976-65EF-43F7-8668-13855D5D010F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{BA829079-B147-4D7C-AD7A-017BA7E1B4EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA829079-B147-4D7C-AD7A-017BA7E1B4EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA829079-B147-4D7C-AD7A-017BA7E1B4EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0DF8162-7DAE-4333-9F24-F63BB84109D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0DF8162-7DAE-4333-9F24-F63BB84109D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0DF8162-7DAE-4333-9F24-F63BB84109D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0DF8162-7DAE-4333-9F24-F63BB84109D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF997976-65EF-43F7-8668-13855D5D010F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF997976-65EF-43F7-8668-13855D5D010F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF997976-65EF-43F7-8668-13855D5D010F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF997976-65EF-43F7-8668-13855D5D010F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
