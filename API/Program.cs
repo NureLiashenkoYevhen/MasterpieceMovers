@@ -90,6 +90,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//Added new comment
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
