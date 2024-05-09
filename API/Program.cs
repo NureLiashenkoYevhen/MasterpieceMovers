@@ -97,6 +97,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
+//fded
 app.MapControllers();
 
 app.UseMiddleware<JwtConnectorMiddleware>();
