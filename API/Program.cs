@@ -93,6 +93,7 @@ if (app.Environment.IsDevelopment())
 //Added new comment
 app.UseHttpsRedirection();
 
+//Added comment
 app.UseAuthentication();
 app.UseAuthorization();
 
