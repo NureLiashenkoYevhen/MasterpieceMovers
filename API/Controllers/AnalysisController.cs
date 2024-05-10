@@ -40,6 +40,7 @@ public class AnalysisController : Controller
     {
         var result = await _analysisService.GetAllAnalysisesAsync();
         
+        //Added test comment
         return Ok(result);
     }
 
