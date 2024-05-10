@@ -39,8 +39,7 @@ public class AnalysisController : Controller
     public async Task<IActionResult> GetAllAnalysis()
     {
         var result = await _analysisService.GetAllAnalysisesAsync();
-
-        //hueh
+        
         return Ok(result);
     }
 
