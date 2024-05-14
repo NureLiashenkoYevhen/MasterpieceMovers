@@ -24,8 +24,7 @@ namespace BLL.Statistics
             {
                 return -1;
             }
-
-
+            
             var averageShipmentsPerDay = await _applicationDbContext.Transfers.CountAsync() / totalDays;
 
             return averageShipmentsPerDay;
