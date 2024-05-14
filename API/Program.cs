@@ -84,17 +84,17 @@ builder.Services.AddScoped<IPasswordService, PasswordService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
+//Added new comment
 app.UseHttpsRedirection();
 
+//Added comment
 app.UseAuthentication();
 app.UseAuthorization();
 
+//fded
 app.MapControllers();
 
 app.UseMiddleware<JwtConnectorMiddleware>();
